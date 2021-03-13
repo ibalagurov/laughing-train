@@ -1,0 +1,11 @@
+# configuration https://flake8.pycqa.org/en/latest/user/configuration.html
+# options https://flake8.pycqa.org/en/latest/user/options.html#index-of-options
+
+[flake8]
+exclude =
+    .git,
+    .venv,
+    .idea,
+    .pytest_cache
+max_line_length = 100
+max-complexity = 6
