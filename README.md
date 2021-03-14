@@ -15,7 +15,7 @@ Otherwise:
 - install python (3.9+)
 - install poetry (1.1.4+)
 - `poetry install --no-dev`
-- `poetry run python app.py`
+- `make app`
 
 For developing:
 - `poetry install`
