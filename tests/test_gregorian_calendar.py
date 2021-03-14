@@ -16,9 +16,7 @@ It means:
 """
 import pytest
 
-from src import gregorian_calendar
-
-Result = gregorian_calendar.Result
+from src.calendar import date_to_gregorian, GregorianDate
 
 
 @pytest.mark.parametrize(
@@ -36,7 +34,7 @@ Result = gregorian_calendar.Result
 )
 def test_correct_date_format(year, month, day):
     """Check correct date"""
-    result: Result = gregorian_calendar.is_correct_date(year=year, month=month, day=day)
+    result: GregorianDate = date_to_gregorian(year=year, month=month, day=day)
     assert (
         result.correct
     ), f"Correct date '{day}-{month}-{year}'(day-month-year) is recognized as incorrect"
@@ -48,7 +46,7 @@ def test_400_years_contain_97_leap_years():
     leap_years = [
         year
         for year in range(start_year, start_year + 400)
-        if gregorian_calendar.is_correct_date(year=year, month=2, day=29).correct
+        if date_to_gregorian(year=year, month=2, day=29).correct
     ]
     actual_count = len(leap_years)
     expected_count = 97
@@ -82,7 +80,7 @@ def test_400_years_contain_97_leap_years():
 )
 def test_incorrect_date_format(year, month, day):
     """Check incorrect date"""
-    result: Result = gregorian_calendar.is_correct_date(year=year, month=month, day=day)
+    result: GregorianDate = date_to_gregorian(year=year, month=month, day=day)
     assert (
         not result.correct
     ), f"Incorrect date '{day}-{month}-{year}'(day-month-year) is recognized as correct"
@@ -98,7 +96,7 @@ def test_incorrect_date_format(year, month, day):
 )
 def test_unsupported_date_format(year, month, day):
     """Check unsupported date"""
-    result: Result = gregorian_calendar.is_correct_date(year=year, month=month, day=day)
+    result: GregorianDate = date_to_gregorian(year=year, month=month, day=day)
     assert (
         not result.supported
     ), f"Unsupported date '{day}-{month}-{year}'(day-month-year) is recognized as supported"
