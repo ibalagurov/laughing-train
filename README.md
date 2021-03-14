@@ -2,6 +2,7 @@
 
 Features:
 - CI (Github actions)
+    - Virtual environment with dependencies lock (poetry) 
     - Code formatter (black)
     - Linter (flake8)
     - Tests (pytest)
