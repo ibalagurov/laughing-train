@@ -1,6 +1,6 @@
 # Gregorian calendar date checker =)
 
-Features:
+### Features:
 - CI (Github actions)
     - Virtual environment with dependencies lock (poetry) 
     - Code formatter (black)
@@ -8,6 +8,7 @@ Features:
     - Tests (pytest)
 - Docker image
 
+### Installation & Usage:
 Easy way to check it:
 - `make docker_app` for working with app
 - `make docker_test` for run tests
@@ -27,3 +28,15 @@ In case of installation\configuration problems:
 - [MacOs guide to python on MacOS](
   https://medium.com/@briantorresgil/definitive-guide-to-python-on-mac-osx-65acd8d969d0
   )
+
+### Next steps:
+- [ ] Extract methods from app.py for parse user input (with tests)
+- [ ] Rewrite from datetime.strptime to custom realization
+  - [ ] Fix day count for each month
+  - [ ] Calculate leap years
+  - [ ] Extend supported years
+- [ ] Extend linter checks and formatter:
+  - [ ] Add import sort with isort
+  - [ ] Add deadcode analysis with vulture
+  - [ ] Add code coverage level
+  - [ ] Add flake8 plugins relevant for project
