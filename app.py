@@ -15,7 +15,7 @@ if __name__ == "__main__":
             print("Bye!")
             break
 
-        match = re.match(r"(\d+)\.(\d+)\.(-?\d+)", string=string)
+        match = re.match(r"^(\d+)\.(\d+)\.(-?\d+)$", string=string)
 
         if not match:
             print("Invalid format, try one more time\n")
