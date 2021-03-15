@@ -30,13 +30,16 @@ In case of installation\configuration problems:
   )
 
 ### Next steps:
-- [ ] Extract methods from app.py for parse user input (with tests)
-- [ ] Rewrite from datetime.strptime to custom realization
-  - [ ] Fix day count for each month
-  - [ ] Calculate leap years
-  - [ ] Extend supported years
+- [ ] Extract methods from app.py for parse user input with tests (for better coverage)
+  - [ ] Add code coverage level
+  - [ ] Improve it
+- [ ] Rewrite from datetime.strptime to custom realization (for better performance)
+  - [ ] Measure speed
+  - [ ] Improve it
+    - [ ] Fix day count for each month
+    - [ ] Calculate leap years
+    - [ ] Extend supported years
 - [ ] Extend linter checks and formatter:
   - [ ] Add import sort with isort
   - [ ] Add deadcode analysis with vulture
-  - [ ] Add code coverage level
   - [ ] Add flake8 plugins relevant for project
