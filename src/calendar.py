@@ -8,7 +8,7 @@ class GregorianDate(NamedTuple):
     correct: Optional[bool] = None
 
 
-def date_to_gregorian(year: int, month: int, day: int) -> GregorianDate:
+def date_to_gregorian(day: int, month: int, year: int) -> GregorianDate:
     """
     Check is date correct in terms of gregorian calendar.
 

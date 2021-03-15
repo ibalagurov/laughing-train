@@ -20,21 +20,21 @@ from src.calendar import date_to_gregorian, GregorianDate
 
 
 @pytest.mark.parametrize(
-    "year, month, day",
+    "day, month, year",
     [
         pytest.param(1, 1, 1, id="Minimum supported date"),
-        pytest.param(9999, 12, 31, id="Maximum supported date"),
-        pytest.param(4, 2, 29, id="First supported usual 4th leap year"),
-        pytest.param(2020, 2, 29, id="Usual 4th leap year"),
-        pytest.param(9996, 2, 29, id="Last supported usual 4th leap year"),
-        pytest.param(400, 2, 29, id="First supported round leap year"),
-        pytest.param(2000, 2, 29, id="Usual round leap year"),
-        pytest.param(9600, 2, 29, id="Last supported round leap year"),
+        pytest.param(31, 12, 9999, id="Maximum supported date"),
+        pytest.param(29, 2, 4, id="First supported usual 4th leap year"),
+        pytest.param(29, 2, 2020, id="Usual 4th leap year"),
+        pytest.param(29, 2, 9996, id="Last supported usual 4th leap year"),
+        pytest.param(29, 2, 400, id="First supported round leap year"),
+        pytest.param(29, 2, 2000, id="Usual round leap year"),
+        pytest.param(29, 2, 9600, id="Last supported round leap year"),
     ],
 )
-def test_correct_date_format(year, month, day):
+def test_correct_date_format(day, month, year):
     """Check correct date"""
-    result: GregorianDate = date_to_gregorian(year=year, month=month, day=day)
+    result: GregorianDate = date_to_gregorian(day=day, month=month, year=year)
     assert (
         result.correct
     ), f"Correct date '{day}-{month}-{year}'(day-month-year) is recognized as incorrect"
@@ -58,45 +58,45 @@ def test_400_years_contain_97_leap_years():
 
 
 @pytest.mark.parametrize(
-    "year, month, day",
+    "day, month, year",
     [
         # 29th february for not leap years
-        pytest.param(1, 2, 29, id="First supported usual year"),
-        pytest.param(2021, 2, 29, id="Usual year"),
-        pytest.param(9999, 2, 29, id="Last supported usual year"),
-        pytest.param(100, 2, 29, id="First supported round usual year"),
-        pytest.param(2100, 2, 29, id="Usual round year"),
-        pytest.param(9900, 2, 29, id="Last supported round usual year"),
+        pytest.param(29, 2, 1, id="First supported usual year"),
+        pytest.param(29, 2, 2021, id="Usual year"),
+        pytest.param(29, 2, 9999, id="Last supported usual year"),
+        pytest.param(29, 2, 100, id="First supported round usual year"),
+        pytest.param(29, 2, 2100, id="Usual round year"),
+        pytest.param(29, 2, 9900, id="Last supported round usual year"),
         # day format
-        pytest.param(1900, 1, 32, id="Nonexistent 32th day"),
-        pytest.param(1900, 4, 31, id="Nonexistent 31th day"),
-        pytest.param(1900, 1, 0, id="Nonexistent 0th day"),
-        pytest.param(1900, 1, -1, id="Negative day"),
+        pytest.param(32, 1, 1900, id="Nonexistent 32th day"),
+        pytest.param(31, 4, 1900, id="Nonexistent 31th day"),
+        pytest.param(0, 1, 1900, id="Nonexistent 0th day"),
+        pytest.param(-1, 1, 1900, id="Negative day"),
         # month format
-        pytest.param(1900, 0, 1, id="Nonexistent 0th day"),
-        pytest.param(1900, 13, 1, id="Nonexistent 13th month"),
-        pytest.param(1900, -1, 1, id="Negative month"),
+        pytest.param(1, 0, 1900, id="Nonexistent 0th day"),
+        pytest.param(1, 13, 1900, id="Nonexistent 13th month"),
+        pytest.param(1, -1, 1900, id="Negative month"),
     ],
 )
-def test_incorrect_date_format(year, month, day):
+def test_incorrect_date_format(day, month, year):
     """Check incorrect date"""
-    result: GregorianDate = date_to_gregorian(year=year, month=month, day=day)
+    result: GregorianDate = date_to_gregorian(day=day, month=month, year=year)
     assert (
         not result.correct
     ), f"Incorrect date '{day}-{month}-{year}'(day-month-year) is recognized as correct"
 
 
 @pytest.mark.parametrize(
-    "year, month, day",
+    "day, month, year",
     [
-        pytest.param(0, 1, 31, id="Unsupported bottom boundary year"),
-        pytest.param(10_000, 1, 1, id="Unsupported top boundary year"),
-        pytest.param(-1, 1, 31, id="Negative year"),
+        pytest.param(31, 1, 0, id="Unsupported bottom boundary year"),
+        pytest.param(1, 1, 10_000, id="Unsupported top boundary year"),
+        pytest.param(31, 1, -1, id="Negative year"),
     ],
 )
-def test_unsupported_date_format(year, month, day):
+def test_unsupported_date_format(day, month, year):
     """Check unsupported date"""
-    result: GregorianDate = date_to_gregorian(year=year, month=month, day=day)
+    result: GregorianDate = date_to_gregorian(day=day, month=month, year=year)
     assert (
         not result.supported
     ), f"Unsupported date '{day}-{month}-{year}'(day-month-year) is recognized as supported"
